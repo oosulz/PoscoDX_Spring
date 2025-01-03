@@ -10,5 +10,7 @@
   	<module>guestbook03</module>
   	<module>logex</module>
   	<module>fileupload</module>
+  	<module>locale</module>
+  	<module>locale2</module>
   </modules>
 </project>
