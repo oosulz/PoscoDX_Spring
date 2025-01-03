@@ -8,5 +8,7 @@
   	<module>hellospring</module>
   	<module>emaillist03</module>
   	<module>guestbook03</module>
+  	<module>logex</module>
+  	<module>fileupload</module>
   </modules>
 </project>
