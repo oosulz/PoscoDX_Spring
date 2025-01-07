@@ -12,5 +12,7 @@
   	<module>fileupload</module>
   	<module>locale</module>
   	<module>locale2</module>
+  	<module>aop</module>
+  	<module>validation</module>
   </modules>
 </project>
