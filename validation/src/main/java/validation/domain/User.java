@@ -1,5 +1,6 @@
 package validation.domain;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -15,6 +16,7 @@ public class User {
 	private String name;
 
 	@NotEmpty
+	@Email
 	private String email;
 
 	@NotEmpty
