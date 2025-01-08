@@ -33,6 +33,7 @@
 		<table width=510 border=1>
 			<tr>
 				<td>[${count-status.index }]</td>
+				<td>[${vo.id }]</td>
 				<td>${vo.name }</td>
 				<td>${vo.regDate }</td>
 				<td><a href="/guestbook03/delete/${vo.id }">삭제</a></td>

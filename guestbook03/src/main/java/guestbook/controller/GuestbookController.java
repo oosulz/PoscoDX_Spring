@@ -12,20 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import guestbook.repository.GuestbookRepository;
+import guestbook.service.GuestbookService;
 import guestbook.vo.GuestbookVo;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class GuestbookController {
-	private GuestbookRepository guestbookRepository;
 
-	public GuestbookController(GuestbookRepository guestbookRepository) {
-		this.guestbookRepository = guestbookRepository;
+	private GuestbookService guestbookService;
+
+	public GuestbookController(GuestbookService guestbookService) {
+		this.guestbookService = guestbookService;
 	}
 
 	@RequestMapping("/")
-	public String index( /*HttpServletRequest httpServletRequest*/Model model) {
+	public String index( /* HttpServletRequest httpServletRequest */Model model) {
 		/*
 		 * ServletContext sc = httpServletRequest.getServletContext();
 		 * Enumeration<String> e = sc.getAttributeNames(); while (e.hasMoreElements()) {
@@ -42,29 +44,26 @@ public class GuestbookController {
 		 * 
 		 * System.out.println(repository); System.out.println(controller);
 		 */
-		
-		
-		
- 		List<GuestbookVo> list = guestbookRepository.findAll();
-		model.addAttribute("list", list);
+
+		model.addAttribute("list", guestbookService.getContentsList());
 		return "index";
 	}
 
-	@RequestMapping(value = "/delete/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteForm(@PathVariable("id") Long id) {
 		return "delete";
 	}
 
-	@RequestMapping(value = "/delete/{id}", method=RequestMethod.POST)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	public String delete(@PathVariable("id") Long id, @RequestParam("password") String password) {
 		System.out.println(id);
-		guestbookRepository.deleteByIdAndPassword(id, password);
+		guestbookService.deleteContents(id, password);
 		return "redirect:/";
 	}
 
 	@RequestMapping("/add")
 	public String add(GuestbookVo vo) {
-		guestbookRepository.insert(vo);
+		guestbookService.addContents(vo);
 		return "redirect:/";
 	}
 }
